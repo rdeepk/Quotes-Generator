@@ -1,4 +1,3 @@
-
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -35,6 +34,19 @@
         	<div class="col-sm-12" id="quote_by">
             </div>
         </div>
+        <div class="row">
+        	<div class="col-sm-6">
+            <label>Choose Category</label>
+            <select id="categories" onchange="fresh()">
+            <option value="nature" selected="selected">Nature</option>
+            <option value="funny">Funny</option>
+            <option value="inspirational">Inspirational</option>
+            </select>
+            </div>
+            <div class="col-sm-6">
+            <input type="button" id="next_quote" value = "Next Quote" />
+            </div>
+        </div>
     </div>
 
     <!-- Bootstrap core JavaScript
@@ -45,27 +57,42 @@
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
     <script type="text/javascript" src="json/quotes.json"></script>
     <script>
-		var mydata = JSON.parse(data);
+	
+		<!-- Returns random element index of the given array -->
+		var randomIndex = function(size){
+			var random  = Math.floor(Math.random() * size);
+			return random == size ? random-- : random;
+		}
 		
-		function getRandomArrayIndex(arrayLength){
-		//returns random element index of the given array
-			var random  = Math.floor(Math.random() * mydata.length);
-			if(random == arrayLength){
-				return random-1;
+		<!-- Returns array of all quotes belonging to selected category in the dropdown -->
+		function getAllQuotesFromCategory(data){
+			var category = document.getElementById("categories").value;
+			function filterCategory(){
+				return function(element){
+					return element['category'] === category;
+				}		
 			}
-			return random;
+			return data.filter(filterCategory(category));
 		}
 		
-		function getQuoteData(data){
-			//returns random element from the quotes data
-			var randomQuote = getRandomArrayIndex(data.length);
-			return {"quote" : data[randomQuote]['quote'], "by":data[randomQuote]['by'], "category":data[randomQuote]['category']}
+		<!-- Returns random quote from the array of quotes passed as argument -->
+		function newQuote(arrayOfQuotes){
+			var chosenIndex = randomIndex(arrayOfQuotes.length);
+			return arrayOfQuotes.filter((quotes, index) =>  index == chosenIndex)[0];
 		}
 		
-		var QuoteData = getQuoteData(mydata);
+		<!-- Displays fresh quote -->
+		function fresh(){
+			var randomQuote = newQuote(getAllQuotesFromCategory(JSON.parse(data)));
+			document.getElementById("quote").innerHTML = JSON.stringify(randomQuote['quote']);
+			document.getElementById("quote_by").innerHTML = randomQuote['by'];
+		}
 		
-		document.getElementById("quote").innerHTML = JSON.stringify(QuoteData['quote']);
-		document.getElementById("quote_by").innerHTML = QuoteData['by'];
+		fresh();
+		document.getElementById("next_quote").addEventListener("click", function(event) {
+			fresh();
+		}, false);
+		
 	</script>
   </body>
 </html>
