@@ -1,99 +1,153 @@
-var tweet_text, category;
-var themes = ["theme1","theme2","theme3","theme4"];
+var tweetUrl, category;
+var themes = ['theme1','theme2','theme3','theme4'];
 
-// Returns random element index of the given array
-var randomIndex = function(size){
-	var random  = Math.floor(Math.random() * size);
+/**
+ * @summary Returns random element index of the given array.
+ *
+ * @param number $size Length of array.
+ *
+ * @return number Random element index.
+ */
+var randomIndex = function( size ) {
+	var random  = Math.floor( Math.random() * size );
 	return random == size ? random-- : random;
 }
 
-// Returns array of all quotes for the selected category in the dropdown
-function getAllQuotesFromCategory(data) {
-	category = document.getElementById("categories").value;
-	function filterCategory(){
-		return function(element){
+/**
+ * @summary Returns array of all quotes for the selected category in 
+ * the dropdown.
+ *
+ * @param array $data Array of quotes.
+ *
+ * @return array Filetered quotes of the chosen category in the select box.
+ */
+function getAllQuotesFromCategory( data ) {
+	category = document.getElementById( 'categories' ).value;
+	function filterCategory() {
+		return function( element ) {
 			return element['category'] === category;
 		}		
 	}
-	return data.filter(filterCategory(category));
+	return data.filter( filterCategory( category ) );
 }
 
-// Returns random quote from the array of quotes passed as argument
-function newQuote(arrayOfQuotes) {
-	var chosenIndex = randomIndex(arrayOfQuotes.length);
-	return arrayOfQuotes.filter((quotes, index) =>  index == chosenIndex)[0];
+/**
+ * @summary Provides random quote from the array of quotes.
+ *
+ * @param array $arrayOfQuotes Array of quotes.
+ *
+ * @return array Chosen random quote data.
+ */
+function newQuote( arrayOfQuotes ) {
+	var chosenIndex = randomIndex( arrayOfQuotes.length );
+	return arrayOfQuotes.filter( ( quotes, index ) =>  index == chosenIndex )[0];
 }
 
-// Animates the item
-(function ( $ ) {
-	$.fn.itemAnimate = function(context, value) {
-		$(this).animate({
+/**
+ * @summary Animates the item.
+ */
+( function ( $ ) {
+	$.fn.itemAnimate = function( context, value ) {
+		$( this ).animate ({
 		opacity: 0
 	}, 800,
 		function() {
-			$(this).animate({
+			$(this).animate ({
 			opacity: 1
 		}, 500);
-		if(context == 'quote'){
-			$(this).setText(value);
+		if( context == 'quote' ) {
+			$( this ).setText( value );
 		} else {
-			$(this).setTheme(value);
+			$( this ).setTheme( value );
 		}
 	});
 		return this;			
 	};
 }( jQuery ));
 
-// sets html for element
-(function ( $ ) {
-	$.fn.setText = function(value) {
-		$(this).html(value);
+/**
+ * @summary Sets HTML for the element.
+ */
+( function ( $ ) {
+	$.fn.setText = function( value ) {
+		$( this ).html( value );
 	}
 }( jQuery ));
 
-// sets theme for the element	
-(function ( $ ) {
-	$.fn.setTheme = function(value) {
-		$(this).removeClass();
-		$(this).addClass(value);
+/**
+ * @summary Sets theme for the element.
+ */	
+( function ( $ ) {
+	$.fn.setTheme = function( value ) {
+		$( this ).removeClass();
+		$( this ).addClass( value );
 	}
 }( jQuery ));
 
-// updates with the fresh quote
-function changeQuote(quote) {
+/**
+ * @summary updates the page with the fresh quote data.
+ *
+ * @param array $quote Array of chosen quote data.
+ */
+function changeQuote( quote ) {
 	var quoteText = "<i class='fa fa-quote-left'></i> " + quote['quote'] ;
-	var autherText = "- " +quote['by'];
-	$( "#quote" ).itemAnimate('quote', quoteText);
-	$("#quote_by").itemAnimate('quote', autherText);
+	var autherText = '- ' +quote['by'];
+	$( '#quote' ).itemAnimate( 'quote', quoteText );
+	$( '#quote_by' ).itemAnimate( 'quote', autherText );
 }
 
-// change the theme of the app
+/**
+ * @summary Updates the page with fresh theme.
+ */
 function changeTheme() {
-	var currentTheme = themes[randomIndex(themes.length)];
-	$("#themes").itemAnimate('theme', currentTheme);
+	var currentTheme = themes[ randomIndex( themes.length ) ];
+	$( '#themes' ).itemAnimate( 'theme', currentTheme );
 }
 
-// Displays fresh quote of the category
-function fresh(){
-	var randomQuote = newQuote(getAllQuotesFromCategory(JSON.parse(data)));
-	tweet_url = "https://twitter.com/intent/tweet?text="+randomQuote['quote']+"&hashtags=quotes,"+category;
-	changeQuote(randomQuote);
-	changeTheme();		
+/**
+ * @summary Starts the process for fresh quote.
+ *
+ * @fires changeQuote() To change the quote on the app.
+ * @fires changeTheme() To change the color theme on the app.
+ * 
+ * @global string $tweetUrl Sets tweet url for sharing on twitter.
+ */
+function fresh() {
+	var randomQuote = newQuote( getAllQuotesFromCategory( JSON.parse( data ) ) );
+	tweetUrl = 'https://twitter.com/intent/tweet?text='+randomQuote['quote']+'&hashtags=quotes,'+category;
+	changeQuote( randomQuote );
+	changeTheme();
+	 $('#categories').find('option').css('color', '#949494');
+    $('#categories').find('option:selected').css('color', '#dfdfdf');
 }
-
 fresh();
-
-document.getElementById("next_quote").addEventListener("click", function(event) {
+/**
+ * @summary Adds click lestener to the button NextQuote.
+ */
+document.getElementById( 'next_quote' ).addEventListener( 'click', function( event ) {
 	fresh();
-}, false);
+}, false );
 
-$("#tweet").on( "click", function( event ){
+/**
+ * @summary Opens twitter we intent pop up.
+ */
+$( '#tweet' ).on( 'click', function( event ) {
 	event.preventDefault();
-	popupCenter(tweet_url, "twitterwindow", 550, 420);
+	popupCenter( tweetUrl, 'twitterwindow', 550, 420 );
 });
 
-function popupCenter(url, title, w, h) {
-	var left = (screen.width/2)-(w/2);
-	var top = (screen.height/2)-(h/2);
-	return window.open(url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top=200, left='+left);
+/**
+ * @summary Opens a pop up window.
+ *
+ * @param string $url Url for the new pop up.
+ * @param string $title Title for the new pop up.
+ * @param number $w Width for the new pop up.
+ * @param number $h Height for the new pop up.
+ *
+ * @return Opens a new pop up window.
+ */
+function popupCenter( url, title, w, h ) {
+	var left = ( screen.width/2 )-( w/2 );
+	var top = ( screen.height/2 )-( h/2 );
+	return window.open( url, title, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width='+w+', height='+h+', top=200, left='+left );
 }
