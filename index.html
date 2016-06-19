@@ -6,16 +6,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
     <meta name="description" content="">
+    <meta name="keywords" content="">
     <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
+    <link rel="icon" href="">
     <title>Random Quotes Generator</title>
 
     <!-- Bootstrap core CSS -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,300italic,400,400italic">
 
     <!-- Custom styles for this template -->
-    <link href="style.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
 
     <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
     <!--[if lt IE 9]>
@@ -24,75 +25,51 @@
     <![endif]-->
   </head>
 
-  <body>
-	<div id="container">
-    	<div class="row">
-        	<div class="col-sm-12" id="quote">
-            </div>
-        </div>
-        <div class="row">
-        	<div class="col-sm-12" id="quote_by">
-            </div>
-        </div>
-        <div class="row">
-        	<div class="col-sm-6">
-            <label>Choose Category</label>
-            <select id="categories" onchange="fresh()">
-            <option value="nature" selected="selected">Nature</option>
-            <option value="funny">Funny</option>
-            <option value="inspirational">Inspirational</option>
-            </select>
-            </div>
-            <div class="col-sm-6">
-            <input type="button" id="next_quote" value = "Next Quote" />
-            </div>
-        </div>
-    </div>
+  <body id="themes" class="theme4">
+	<div class="wrapper">
+        <div class="board">
+            
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-sm-12" id="quote">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-sm-12 text-center">
+                    	<span id="quote_by"></span>
+                    </div>
+                </div>
+                <div class="status-bar">
+                    <div class="row">
+                        <div class="col-sm-3">
+                        	<a class="twitter-share-button" id="tweet"><i class="fa fa-twitter"></i>Tweet</a>
+                        </div>
+                        <div class="col-sm-6 text-center">
+                            <label>Theme</label>
+                            <select id="categories" onChange="fresh()">
+                                <option value="nature" selected="selected">Nature</option>
+                                <option value="funny">Funny</option>
+                                <option value="inspirational">Inspirational</option>
+                            </select>
+                        </div>
+                        <div class="col-sm-3 text-right">
+                            <input type="button" class="next-quote" id="next_quote" value="Next Quote" />
+                        </div>
+                    </div>
+                </div><!-- .status-bar -->
+            </div><!-- .container-fluid -->
+            
+        </div><!-- .board -->
+    </div><!-- .wrapper -->
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
     <!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
-    <script type="text/javascript" src="json/quotes.json"></script>
-    <script>
-	
-		<!-- Returns random element index of the given array -->
-		var randomIndex = function(size){
-			var random  = Math.floor(Math.random() * size);
-			return random == size ? random-- : random;
-		}
-		
-		<!-- Returns array of all quotes belonging to selected category in the dropdown -->
-		function getAllQuotesFromCategory(data){
-			var category = document.getElementById("categories").value;
-			function filterCategory(){
-				return function(element){
-					return element['category'] === category;
-				}		
-			}
-			return data.filter(filterCategory(category));
-		}
-		
-		<!-- Returns random quote from the array of quotes passed as argument -->
-		function newQuote(arrayOfQuotes){
-			var chosenIndex = randomIndex(arrayOfQuotes.length);
-			return arrayOfQuotes.filter((quotes, index) =>  index == chosenIndex)[0];
-		}
-		
-		<!-- Displays fresh quote -->
-		function fresh(){
-			var randomQuote = newQuote(getAllQuotesFromCategory(JSON.parse(data)));
-			document.getElementById("quote").innerHTML = JSON.stringify(randomQuote['quote']);
-			document.getElementById("quote_by").innerHTML = randomQuote['by'];
-		}
-		
-		fresh();
-		document.getElementById("next_quote").addEventListener("click", function(event) {
-			fresh();
-		}, false);
-		
-	</script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js" integrity="sha384-0mSbJDEHialfmuBBQP6A4Qrprq5OVfW37PRR3j5ELqxss1yVqOtnepnHVP9aJ7xS" crossorigin="anonymous"></script>
+    <script src="https://use.fontawesome.com/ea1a44ebba.js"></script>
+	<script src="json/quotes.json"></script>
+    <script src="js/quotes.js"></script>
   </body>
 </html>
