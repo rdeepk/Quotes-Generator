@@ -141,8 +141,6 @@ body {
 ------------------------------------- */
 .status-bar {
 	bottom: 60px;
-	left: 5%;
-	right: 5%;
 	margin: 50px 0 20px;
 }
 
@@ -155,6 +153,22 @@ body {
 .status-bar .row div {
 	text-align: center;
 	margin-bottom: 30px;
+}
+
+.status-bar.visible-xs .row{
+	margin: 0 -5px;
+}
+
+.status-bar.visible-xs .row div {
+	padding: 0;
+}
+
+.status-bar.visible-xs .row div:first-child {
+	padding: 0 5px;
+}
+
+.status-bar.visible-xs .row div:last-child {
+	padding: 0 5px;
 }
 
 .twitter-share-button {
@@ -173,10 +187,6 @@ body {
 	text-decoration: none;
 }
 
-.fa-twitter {
-	padding-right: 10px;
-}
-
 select {
 	background-color: transparent;
 	border: 1px solid rgba(255, 255, 255, .3);
@@ -190,7 +200,8 @@ select:focus {
 	outline: none;
 }
 
-input[type="button"] {
+input[type="button" i],
+button {
 	background-color: transparent;
 }
 
@@ -206,19 +217,29 @@ input[type="button"] {
 .next-quote:focus {
 	outline: none;
 }
+
+.status-bar.visible-xs .twitter-share-button {
+	padding: 5px 7px;
+}
+
+.status-bar.visible-xs .next-quote {
+	padding: 5px 10px;
+}
  
+.status-bar.visible-xs select {
+	padding: 5px 7px;
+}
+
 @media (min-width: 768px) {
 	.status-bar {
 		position: absolute;
+		left: 5%;
+		right: 5%;
 		margin: 0;
 	}
 	
-	.status-bar .row div:first-child {
-		text-align: left;
-	}
-	
-	.status-bar .row div:last-child {
-		text-align: right;
+	.fa-twitter {
+		padding-right: 10px;
 	}
 }
 

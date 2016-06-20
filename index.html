@@ -26,6 +26,28 @@
   </head>
 
   <body id="themes" class="theme4">
+    <div class="status-bar visible-xs">
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col-xs-3">
+        <a class="twitter-share-button" id="tweet_xs"><i class="fa fa-twitter"></i></a>
+        </div>
+        <div class="col-xs-6 text-center">
+        <select id="categories_xs" onChange="fresh()">
+        <option value="nature">Nature</option>
+        <option value="funny">Funny</option>
+        <option value="inspirational">Inspirational</option>
+        <option value="developer" selected="selected">Developer</option>
+        </select>
+        </div>
+        <div class="col-xs-3">
+            <button type="button" class="next-quote" id="next_quote_xs">
+                <i class="fa fa-caret-right"></i>
+            </button>
+        </div>
+        </div>
+        </div>
+    </div><!-- .status-bar -->
 	<div class="wrapper">
         <div class="board">
             
@@ -39,7 +61,7 @@
                     	<span id="quote_by"></span>
  					</div>
                 </div>
-                <div class="status-bar">
+                <div class="status-bar hidden-xs">
                     <div class="row">
                         <div class="col-sm-3">
                         	<a class="twitter-share-button" id="tweet"><i class="fa fa-twitter"></i>Tweet</a>
@@ -53,7 +75,7 @@
                                 <option value="developer" selected="selected">Developer</option>
                             </select>
                         </div>
-                        <div class="col-sm-3">
+                        <div class="col-sm-3 text-right">
                             <input type="button" class="next-quote" id="next_quote" value="Next Quote" />
                         </div>
                     </div>

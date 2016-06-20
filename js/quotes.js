@@ -117,21 +117,41 @@ function fresh() {
 	tweetUrl = 'https://twitter.com/intent/tweet?text='+randomQuote['quote']+'&hashtags=quotes,'+category;
 	changeQuote( randomQuote );
 	changeTheme();
-	 $('#categories').find('option').css('color', '#949494');
-    $('#categories').find('option:selected').css('color', '#dfdfdf');
+	//different color for selected select option
+	$( '#categories' ).find( 'option' ).css( 'color', '#949494' );
+    $( '#categories' ).find( 'option:selected' ).css( 'color', '#dfdfdf' );
+	//different color for selected select option on xs screen
+	$( '#categories_xs' ).find( 'option' ).css( 'color', '#949494' );
+    $( '#categories_xs' ).find( 'option:selected' ).css( 'color', '#dfdfdf' );
 }
 fresh();
+
 /**
- * @summary Adds click lestener to the button NextQuote.
+ * @summary Adds click lestener to the button NextQuote on screens other than xs.
  */
 document.getElementById( 'next_quote' ).addEventListener( 'click', function( event ) {
 	fresh();
 }, false );
 
 /**
- * @summary Opens twitter we intent pop up.
+ * @summary Adds click lestener to the button NextQuote for xs screen.
+ */
+document.getElementById( 'next_quote_xs' ).addEventListener( 'click', function( event ) {
+	fresh();
+}, false );
+
+/**
+ * @summary Opens twitter intent pop up on screens other than xs.
  */
 $( '#tweet' ).on( 'click', function( event ) {
+	event.preventDefault();
+	popupCenter( tweetUrl, 'twitterwindow', 550, 420 );
+});
+
+/**
+ * @summary Opens twitter intent pop up on xs screen.
+ */
+$( '#tweet_xs' ).on( 'click', function( event ) {
 	event.preventDefault();
 	popupCenter( tweetUrl, 'twitterwindow', 550, 420 );
 });
