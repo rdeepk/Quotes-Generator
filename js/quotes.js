@@ -114,7 +114,7 @@ function changeTheme() {
  */
 function fresh() {
 	var randomQuote = newQuote( getAllQuotesFromCategory( JSON.parse( data ) ) );
-	tweetUrl = 'https://twitter.com/intent/tweet?text='+randomQuote['quote']+'&hashtags=quotes,'+category;
+	tweetUrl = urlEncode('https://twitter.com/intent/tweet?text='+randomQuote['quote'])+'&hashtags=quotes,'+category;
 	changeQuote( randomQuote );
 	changeTheme();
 	//different color for selected select option
@@ -155,6 +155,18 @@ $( '#tweet_xs' ).on( 'click', function( event ) {
 	event.preventDefault();
 	popupCenter( tweetUrl, 'twitterwindow', 550, 420 );
 });
+
+/**
+ * @summary Encode the url with hexadecimal.
+ *
+ * @param string $url url to be encoded.
+ *
+ * @return string Encoded url.
+ */
+function urlEncode( url ) {
+	url = url.replace(/&quot;/g, "\"");
+	return encodeURI(url.replace(/&#039;/g, "\'"));
+}
 
 /**
  * @summary Opens a pop up window.
