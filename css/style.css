@@ -2,8 +2,9 @@
 ------------------------------------- */
 html,
 body {
-	height: 100%;
+	min-height: 100%;
 }
+
 
 body {
 	font-family: "Open Sans", sans-serif;
@@ -11,6 +12,13 @@ body {
 	line-height: 1.4;
 	position: relative;
 	background-repeat: no-repeat;
+}
+
+@media (min-width: 768px) {
+	html,
+	body {
+		height: 100%;
+	}
 }
 
 
@@ -24,37 +32,57 @@ body {
 }
 
 .theme2 {
-	background-image: -moz-linear-gradient(50deg, #e9be18 0%, #e9be18 50%, #ce12a3 50%, #ce12a3 100%);
-	background-image: -webkit-linear-gradient(50deg, #e9be18 0%, #e9be18 50%, #ce12a3 50%, #ce12a3 100%);
-	background-image: linear-gradient(50deg, #e9be18 0%, #e9be18 50%, #ce12a3 50%, #ce12a3 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e9be18', endColorstr='#ce12a3',GradientType=1 )
+	background-image: -moz-linear-gradient(40deg, #ce12a3 0%, #ce12a3 50%, #e9be18 50%, #e9be18 100%);
+	background-image: -webkit-linear-gradient(40deg, #ce12a3 0%, #ce12a3 50%, #e9be18 50%, #e9be18 100%);
+	background-image: linear-gradient(40deg, #ce12a3 0%, #ce12a3 50%, #e9be18 50%, #e9be18 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ce12a3', endColorstr='#e9be18',GradientType=1 )
 }
 
 .theme3 {
-	background-image: -moz-linear-gradient(50deg, #f2b607 0%, #f2b607 50%, #f23554 50%, #f23554 100%);
-	background-image: -webkit-linear-gradient(50deg, #f2b607 0%, #f2b607 50%, #f23554 50%, #f23554 100%);
-	background-image: linear-gradient(50deg, #f2b607 0%, #f2b607 50%, #f23554 50%, #f23554 100%);
+	background-image: -moz-linear-gradient(30deg, #f2b607 0%, #f2b607 50%, #f23554 50%, #f23554 100%);
+	background-image: -webkit-linear-gradient(30deg, #f2b607 0%, #f2b607 580%, #f23554 50%, #f23554 100%);
+	background-image: linear-gradient(30deg, #f2b607 0%, #f2b607 50%, #f23554 50%, #f23554 100%);
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f2b607', endColorstr='#f23554',GradientType=1 );
 }
 
 .theme4 {
-	background-image: -moz-linear-gradient(50deg, #16538c 0%, #16538c 50%, #3277a6 50%, #93d7f5 100%);
-	background-image: -webkit-linear-gradient(50deg, #16538c 0%, #16538c 50%, #3277a6 50%, #93d7f5 100%);
-	background-image: linear-gradient(50deg, #16538c 0%, #16538c 50%, #3277a6 50%, #93d7f5 100%);
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#16538c', endColorstr='#3277a6',GradientType=1 );
+	background-image: -moz-linear-gradient(120deg, #03a9f4 0%, #03a9f4 50%, #16538c 50%, #16538c 100%);
+	background-image: -webkit-linear-gradient(120deg, #03a9f4 0%, #03a9f4 50%, #16538c 50%, #16538c 100%);
+	background-image: linear-gradient(120deg, #03a9f4 0%, #03a9f4 50%, #16538c 50%, #16538c 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#03a9f4', endColorstr='#16538c',GradientType=1 );
 }
 
+.theme5 {
+	background-image: -moz-linear-gradient(150deg, #e6524b 0%, #e6524b 50%, #cddc39 50%, #cddc39 100%);
+	background-image: -webkit-linear-gradient(150deg, #e6524b 0%, #e6524b 50%, #cddc39 50%, #cddc39 100%);
+	background-image: linear-gradient(150deg, #e6524b 0%, #e6524b 50%, #b4c131 50%, #b4c131 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e6524b', endColorstr='#cddc39',GradientType=1 );
+}
+
+.theme6 {
+	background-image: -moz-linear-gradient(135deg, #9c27b0 0%, #9c27b0 50%, #ff9800 50%, #ff9800 100%);
+	background-image: -webkit-linear-gradient(135deg, #9c27b0 0%, #9c27b0 50%, #ff9800 50%, #ff9800 100%);
+	background-image: linear-gradient(135deg, #9c27b0 0%, #9c27b0 50%, #ff9800 50%, #ff9800 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#9c27b0', endColorstr='#ff9800',GradientType=1 );
+}
+
+.theme7 {
+	background-image: -moz-linear-gradient(160deg, #f44336 0%, #f44336 50%, #cddc39 50%, #cddc39 100%);
+	background-image: -webkit-linear-gradient(160deg, #f44336 0%, #f44336 50%, #cddc39 50%, #cddc39 100%);
+	background-image: linear-gradient(160deg, #f44336 0%, #f44336 50%, #b6c426 50%, #b6c426 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#f44336', endColorstr='#cddc39',GradientType=1 );
+}
 
 /* Quotes Board
 ------------------------------------- */
 .wrapper {
 	border: 1px solid rgba(255, 255, 255, .3);
 	padding: 5px;
-	top: 10%;
-	bottom: 10%;
-	left: 10%;
-	right: 10%;
-	position: absolute;
+	margin: 10px;
+	top: 2%;
+	bottom: 2%;
+	left: 2%;
+	right: 2%;
 }
 
 .board {
@@ -65,7 +93,7 @@ body {
 }
 
 #quote {
-	font-size: 42px;
+	font-size: 32px;
 	font-weight: 300;
 	color: #dfdfdf;
 	text-align: center;
@@ -87,20 +115,45 @@ body {
     position: relative;
 }
 
+@media (min-width: 768px) {
+	.wrapper {
+		position: absolute;
+		margin: auto;
+	}
+	
+	#quote {
+		font-size: 42px;
+	}
+}
+
+@media (min-width: 992px) {
+	.wrapper {
+		top: 10%;
+		bottom: 10%;
+		left: 10%;
+		right: 10%;
+	}
+}
+
 
 /* Status bar
 ------------------------------------- */
 .status-bar {
-	position: absolute;
 	bottom: 60px;
 	left: 5%;
 	right: 5%;
+	margin: 50px 0 20px;
 }
 
 .status-bar label {
-	font-size: 20px;
+	font-size: 17px;
 	color: #dfdfdf;
 	padding-right: 10px;
+}
+
+.status-bar .row div {
+	text-align: center;
+	margin-bottom: 30px;
 }
 
 .twitter-share-button {
@@ -108,7 +161,7 @@ body {
 	cursor: pointer;
 	border: 1px solid rgba(255, 255, 255, .3);
 	padding: 10px 25px;
-	font-size: 20px;
+	font-size: 17px;
 	color: #dfdfdf;
 	display: inline-block;
 }
@@ -127,7 +180,7 @@ select {
 	background-color: transparent;
 	border: 1px solid rgba(255, 255, 255, .3);
 	padding: 10px 25px;
-	font-size: 20px;
+	font-size: 17px;
 	color: #dfdfdf;
 }
 
@@ -144,11 +197,51 @@ input[type="button"] {
 	color: #000;
 	border: 1px solid rgba(255, 255, 255, .3);
 	padding: 10px 25px;
-	font-size: 20px;
+	font-size: 17px;
 	color: #dfdfdf;
 }
 
 .next-quote:active,
 .next-quote:focus {
 	outline: none;
+}
+ 
+@media (min-width: 768px) {
+	.status-bar {
+		position: absolute;
+		margin: 0;
+	}
+	
+	.status-bar .row div:first-child {
+		text-align: left;
+	}
+	
+	.status-bar .row div:last-child {
+		text-align: right;
+	}
+}
+
+@media (max-width: 768px) {
+	.status-bar label {
+		display: block;
+		padding-bottom: 10px;
+	}
+}
+
+@media (min-width: 992px) {
+	.status-bar label {
+		font-size: 20px;
+	}
+	
+	.twitter-share-button {
+		font-size: 20px;
+	}
+	
+	select {
+		font-size: 20px;
+	}
+	
+	.next-quote {
+		font-size: 20px;
+	}
 }

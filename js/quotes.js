@@ -1,5 +1,5 @@
 var tweetUrl, category;
-var themes = ['theme1','theme2','theme3','theme4'];
+var themes = ['theme1','theme2','theme3','theme4','theme5','theme6','theme7'];
 
 /**
  * @summary Returns random element index of the given array.
