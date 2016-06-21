@@ -1,4 +1,4 @@
-var tweetUrl, category;
+var tweetUrl, category, selectedOption;
 var themes = ['theme1','theme2','theme3','theme4','theme5','theme6','theme7'];
 
 /**
@@ -13,6 +13,29 @@ var randomIndex = function( size ) {
 	return random == size ? random-- : random;
 }
 
+//Where el is the DOM element you'd like to test for visibility
+function isHidden(el) {
+    return (el.offsetParent === null)
+}
+
+/**
+ * @summary Sets value of the select dropdown element.
+ *
+ * @param string $elementId id of the element.
+ * @param string $value value to be set for the element.
+ *
+ */
+ function setSelectedOption( elementId, value ) {
+	var e = document.getElementById( elementId );
+		var opts = e.options;
+		for( var opt, j = 0; opt = opts[j]; j++ ) {
+			if( opt.value ==  value ) {
+			e.selectedIndex = j;
+			break;
+		}
+	}
+ }
+
 /**
  * @summary Returns array of all quotes for the selected category in 
  * the dropdown.
@@ -22,7 +45,18 @@ var randomIndex = function( size ) {
  * @return array Filetered quotes of the chosen category in the select box.
  */
 function getAllQuotesFromCategory( data ) {
-	category = document.getElementById( 'categories' ).value;
+	//We have different select for xs screen, lets check which one is active
+	if( isHidden ( document.getElementById( 'categories' ) ) ) {
+		 category = document.getElementById( 'categories_xs' ).value;
+		 //set same value to the other select dropdown
+		 setSelectedOption( 'categories', category );
+	} else {
+		category = document.getElementById( 'categories' ).value;
+		var e = document.getElementById( 'categories_xs' );
+		//set same value to the other select dropdown
+		setSelectedOption( 'categories_xs', category );
+	}
+	
 	function filterCategory() {
 		return function( element ) {
 			return element['category'] === category;
