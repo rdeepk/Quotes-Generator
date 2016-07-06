@@ -136,6 +136,16 @@ body {
 	}
 }
 
+@media (max-width: 550px) {
+	#quote {
+		font-size: 22px;
+	}
+	
+	#quote_by {
+		font-size: 16px;
+	}
+}
+
 
 /* Status bar
 ------------------------------------- */
